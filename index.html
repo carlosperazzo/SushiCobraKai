@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/nuevoEstilo.css">
+    <link rel="stylesheet" href="css/estiloFormulario.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://smtpjs.com/v3/smtp.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+    <script lang="javascript">
+function vaciarPedido()
+{
+  document.getElementById("total").innerHTML="";
+  document.getElementById("totalPedido").innerHTML="0";
+  document.getElementById("carritoTable").innerHTML="";
+  document.getElementById("carrito-contador").innerHTML="";
+  
+  ocultarTotalVacio(0)
+}
+
+    function ocultarTotalVacio()
+    {
+     
+    var total = document.getElementById("total").innerHTML;
+    var btnVerPedido=document.getElementById("btnVerPedido") ;   
+
+      total = (total == null || total == undefined || total == "") ? 0 : total;
+
+      var x=document.getElementById("totalizador");
+      var contador=document.getElementById("carrito-contador");  
+
+      if (total==parseInt(0))
+      {
+        x.style.display = "none";
+        contador.style.display="none";
+        btnVerPedido.style.display="none";
+      }
+      else{
+        x.style.display = "block";
+        contador.style.display="block";
+        btnVerPedido.style.display="block";
+      }
+
+    }
+function cargarHTML(link){
+           
+        var iframe = document.getElementById("productos");
+        iframe.style.border="0px solid";
+        iframe.width="100%";
+        iframe.setAttribute("src", link);
+        ocultarTotalVacio();
+        
+        }     
+        function guardarCantAnt(e)
+        {
+            
+            document.getElementById('ultCantAnt').value = e.value;
+            
+        }
+        function actualizarCantidadCarrito(e , precio)
+        {
+         
+          let total = document.getElementById('total').innerHTML;
+          let cantAnt=document.getElementById('ultCantAnt').value
+          let cont=document.getElementById("carrito-contador").innerHTML;  
+          let ultItem= e.id ;
+          let ultSubTotal=ultItem.replace("Select","SubTot")
+
+         
+
+          ultItem = (ultItem == null || ultItem == undefined || ultItem == "") ? 0 : ultItem;
+          total = (total == null || total == undefined || total == "") ? 0 : total;
+          cantAnt = (cantAnt == null || cantAnt == undefined || cantAnt == "") ? 0 : cantAnt;
+          cont = (cont == null || cont == undefined || cont == "") ? 0 : cont;
+          cont=cont-cantAnt
+          cont=cont + parseInt(e.value);
+          total=total-(cantAnt * precio)
+          total = total + parseInt(precio) * parseInt(e.value);
+          document.getElementById('total').innerHTML = total;
+          document.getElementById('totalPedido').innerHTML = total;
+          document.getElementById("carrito-contador").innerHTML=cont;
+          
+          document.getElementById(ultSubTotal ).innerHTML= parseInt(precio) * parseInt(e.value);
+        }
+
+           
+</script>
+
+</head>
+<!--onload="cargarHTML('promos.html')"-->
+<body id="contenedor" onload="cargarHTML('vegetariano.html');" >
+    <input type="hidden" id="ultCantAnt" name="ultCantAnt" >
+    <input type="hidden" id="ultItem" name="ultItem" >
+    
+
+    <div class="principal">
+    <header>
+        <div class="row">
+            <div class="col-2" ><a class="telefono" href="https://api.whatsapp.com/send?phone=+5491134861834"><img src="imagenes/whattsap.png" alt="Acceso al teléfono de reclamos"> </a></div>
+            <div class="col-9"><img class="center" src="imagenes/logo_pop.png" alt="Logo SushiPop" width="200px"></div>
+            <div class="col-1"><img src="imagenes/carrito.png" alt="Acceso a Ver y Finalizar tu compra"></div>
+        </div>
+    </header>
+    <div class="row">
+      <div class="col-sm-2">
+    <nav>
+        <div><input type="button" class="btn btn-primary" value="Veggie"  onclick="cargarHTML('vegetariano.html');" > </div>
+        <div><input type="button" class="btn btn-primary" value="Promociones" onclick="cargarHTML('promos.html')"> </div>
+        <div><input type="button" class="btn btn-primary" value="Salados" onclick="cargarHTML('Salados.html')"></div>
+        <div><div class="carrito-contador" id="carrito-contador">0</div></div>
+        <div><input type="button" id="btnVerPedido" class="btn btn-primary" value="Ver Pedido" data-bs-toggle="modal" data-bs-target="#myPedido" ></div>
+        <div></div>
+        
+        <div></div>
+        <div></div>
+                <div><input type="button" class="btn btn-primary" value="Ingresar" 
+            data-bs-toggle="modal" data-bs-target="#myModal" class="nav-menu-link nav-link"></div>
+    </nav>
+  </div>
+  <div class="col-sm-10">
+    <aside>
+           <iframe id="productos" src="" style="width:100%; height: 494px; border: 0px;" height="window.height"></iframe>
+            
+    </aside>
+  </div>
+  </div>
+    
+    <footer>
+        <div class="totalilzador" id="totalizador">
+        <div class="row">
+            <div class="col-10">
+             <input type="button" value="Ver mi Pedido" data-bs-toggle="modal" data-bs-target="#myPedido" 
+             class="btn-Pedido">
+            
+            </div>
+            <div class="col-2">
+                <p id="total" value="0"></p>
+            </div>
+        </div>
+    </div>
+        </footer>
+		
+
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                 
+                <!-- Modal Header -->
+                <div class="contenedor" >
+                <div class="modal-header">
+                  <h4 class="modal-title">Log In</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+          
+                <!-- Modal body -->
+             
+                  <br>
+                  <p style="padding: 10px">Ingresá con tu cuenta para disfrutar el mejor sushi</p>
+                  <form action="/index.html"  id="formulario-Login"  autocomplete="on" onsubmit="openModal()" id="myForm">
+                  <div class="registration-form">
+                      <div class="form-group">
+                         <input  class="form-control item" type="email" name="email" id="email" placeholder="Email"  required>
+                         
+                          
+                      </div>
+                      <div class="form-group">
+                          <input class="form-control item" type="password" name="password" minlength="6" id="password" placeholder="Password" required>
+                          
+                      </div>
+                  </div>
+              
+                  <div>
+                      
+                      
+                  </div>
+                  <div class="form-group">
+                  <button class="btn btn-primary" style="width: 150px;" type="submit" >Ingresar </button>
+                </div>
+                </form>
+                <div><button class="btn btn-primary" style="width: 150px;" type="button"    data-bs-toggle="modal" data-bs-target="#myRegistro">Nuevo Usuario</button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          
+          <div class="modal fade" id="myRegistro">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="contenedor" > 
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Registrarse</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <form id="formulario-Login"  autocomplete="on" onsubmit="openModal()" >
+                  <div class="registration-form">
+                      
+                      <div class="form-group">
+                          <input class="form-control item" type="text" name="Nombre y Apellido" maxlength="15" minlength="4" pattern="^[a-zA-Z0-9_.-]*$" id="username" placeholder="Nombre y Apellido" required>
+                      </div>
+                      <div class="form-group">
+                          <input class="form-control item" type="email" name="email" id="email" placeholder="Email" required>
+                      </div>
+          
+                      <div class="form-group">
+                          <input class="form-control item" type="email" name="Repita su email" id="email" placeholder="Repetir Email" required>
+                      </div>
+                      <div class="form-group">
+                          <input class="form-control item" type="password" name="password" minlength="6" id="password" placeholder="Password" required>
+                      </div>
+                      
+                      <div><button class="btn btn-primary" style="width: 150px;" type="submit"  >
+                      Ingresar</button>
+                      </div>
+                  </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          
+        <form action="https://Formsubmit.co/bd2c9b3e6410eab8f293162226569ab5" method="post">
+            <div class="modal fade" id="myPedido">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="contenedor" id="PedidoaEnviar" > 
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title"> Mi Pedido</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+            
+                  <div>
+                      <div class="shop_carrito" >
+                          
+                        <table class="carritoTable" border="0px" id="carritoTableCabecera">
+                          <th><td>Cant</td><td style="text-align:left">Descripción</td><td style="text-align:right ;" >Precio</td><td style="text-align:right ;">Total</td></th>
+                       
+                        </table>
+                        <table class="carritoTable" border="0px" id="carritoTable">
+
+                       
+                        </table>
+                        <table class="carritoTable" border="0px" >
+                          
+                          <tr><td>
+                            
+                            <br></td></tr><tr><td><br></td></tr>  
+                          <tr class="total"><td>Total:</td><td></td>
+                          <td class="col-total" id="totalPedido">0</td></tr>
+                        </table>
+                  <div>
+                   <br>
+                   <br> 
+                    <button class="btn btn-primary" style="width: 300px;"  onclick="vaciarPedido()" >Vaciar pedido</button>    
+                    <br><br>
+                    
+                  <button class="btn btn-primary" style="width: 300px;" data-bs-dismiss="modal" onclick="window.SubmitEvent()" >Enviar pedido</button>
+                  <input type="hidden" name="_next" value="http://127.0.0.1:5500/index.html">
+                  <input type="hidden" name="_captcha" value="false">
+                  
+
+                  </div>
+                  
+                  </div>
+                  </div>
+          
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>          
+          
+            <script>
+                $(document).ready(function(){
+                $('#myForm').on('submit', function(e){
+                $('#awaitModal').modal('show');
+                e.preventDefault();
+              })});
+
+              
+
+              </script>
+
+</body>
+</html>
+

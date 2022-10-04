@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estiloForm.css">
+    <script>
+
+       
+        function AgregarCarrito(cant, descripcion, precio)
+        {
+            let ultItem=window.parent.document.getElementById('ultItem').value ;
+            ultItem = (ultItem == null || ultItem == undefined || ultItem == "") ? 0 : ultItem;
+            
+            //Agrega al listado de pedido u producto por cada Sumar
+            var total = window.parent.document.getElementById("total").innerHTML;
+            var contador=window.parent.document.getElementById("carrito-contador").innerHTML; 
+            let subtotal=0
+            total = (total == null || total == undefined || total == "") ? 0 : total;
+            contador = (contador == null || contador == undefined || contador == "") ? 0 : contador;
+           
+            contador=parseInt(contador) + parseInt(cant)
+            window.parent.document.getElementById("carrito-contador").innerHTML=contador;
+            
+            total = (parseInt(total) + parseFloat(precio));
+            subtotal=parseFloat(precio) * parseInt(cant)
+            window.parent.document.getElementById('total').innerHTML = total;
+            window.parent.document.getElementById('totalPedido').innerHTML = total;
+            ocultarTotalVacio(total)
+            
+            var Tbl = window.parent.document.getElementById("carritoTable");
+            
+            let script=""
+            if (ultItem==10)
+                 script="<tr><td>Cant</td><td>Descripción</td><td>Precio</td><td>Total</td></tr>"
+            ultItem++
+            window.parent.document.getElementById('ultItem').value=ultItem
+
+            
+            script=script + "<tr><td><select id='Select" + ultItem + "' onclick='guardarCantAnt(this)' onchange='actualizarCantidadCarrito(this,"+  precio +")' style='width: 50px;'>";
+            let x=1
+        
+            while (x<= 10)
+            {
+                if (x==cant)
+                script=script + "<option value='" + x + "'" + " selected=''>"+ x +"</option>"
+                else
+                script=script + "<option value='" + x + "'" + ">"+ x +"</option>"
+                x++
+            }             
+            script=script + "</select></td><td class='col-descrip'>"+descripcion+"</td>"
+            script=script + "<td class='col-precio'>$"+ precio + "</td>"
+            script=script + "<td class='col-precio' id='SubTot" + ultItem + "'>$" + subtotal + "</td></tr>"
+            
+         
+            Tbl.insertRow(-1).innerHTML=script
+
+            let PedidoEnviarAnt= window.parent.document.getElementById("PedidoEnviar").value + "<br>";
+            PedidoEnviarAnt = (PedidoEnviarAnt == null || PedidoEnviarAnt == undefined ) ? "" : PedidoEnviarAnt;
+            //window.parent.document.getElementById("PedidoEnviar").innerText= PedidoEnviarAnt + script
+            //window.parent.document.getElementById("PedidoEnviar").value= PedidoEnviarAnt + cant+ "-----"+ descripcion + "----" + precio + "......." + subtotal
+            
+        }
+
+        function ocultarTotalVacio(valor)
+        {
+            var x=window.parent.document.getElementById("totalizador");
+            var contador=window.parent.document.getElementById("carrito-contador"); 
+            var btnVerPedido=window.parent.document.getElementById("btnVerPedido") ; 
+
+            valor = (valor == null || valor == undefined || valor == "") ? 0 : valor;
+            if (valor==parseInt(0))
+            {
+                x.style.display = "none";
+                contador.style.display = "none";
+                btnVerPedido.style.display = "none";
+            }
+            else
+            {
+                x.style.display = "block";
+                contador.style.display = "block";
+                btnVerPedido.style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+
+   <div  class="container-fluid">
+        <div id="productos" class="row">
+        <div class="caja-producto">
+
+            <div class="imagen" >
+                <img src="imagenes/Veggie/andino.jpg"" >
+            </div>
+            <div class="titulo">
+                <h3>Andino Roll</h3>
+            </div>
+            <div class="descripcion">
+                <h4 class="producto-descripcion">Roll relleno de chauchas, palta y zanahoria con tapa de tomate coronado con ciboulette, nuez crocante y salsa teri</h4>
+            </div>
+            <div class="precio">
+                   $425 
+            </div>
+            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Andino Roll','425');">
+          
+        </div>
+    
+        <div class="caja-producto">
+
+            <div class="imagen" >
+                <img src="imagenes/Veggie/chimi.jpg" alt="" >
+            </div>
+            <div class="titulo">
+                <h3>Chimi Nikkei</h3>
+            </div>
+            <div class="descripcion">
+                <h4 class="producto-descripcion">Roll relleno de tomates cherry, chaucha tempura y zanahoria con tapa de queso coronado con chimi nikkei</h4>
+            </div>
+            <div class="precio">
+                   $500 
+            </div>
+            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Chimi Nikkei','500');">
+          
+        </div>
+        <div class="caja-producto">
+
+            <div class="imagen" >
+                <img src="imagenes/Veggie/chopSuey.jpg" alt="" >
+            </div>
+            <div class="titulo">
+                <h3>Chop Suey Veggie</h3>
+            </div>
+            <div class="descripcion">
+                <h4 class="producto-descripcion">Vegetales salteados en salsa teriyaki, coronados con castaña de cajú y cebolla de verdeo, sobre colchon de quinoa.</h4>
+            </div>
+            <div class="precio">
+                   $1190 
+            </div>
+            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Tokio 40','1190');">
+          
+        </div>
+        <div class="caja-producto">
+
+            <div class="imagen" >
+                <img src="imagenes/Veggie/Fresh.jpg" alt="" >
+            </div>
+            <div class="titulo">
+                <h3>Fresh Roll</h3>
+            </div>
+            <div class="descripcion">
+                <h4 class="producto-descripcion">Roll relleno de queso, hongos crocantes y pickles de cebollitas cubierto</h4>
+            </div>
+            <div class="precio">
+                   $425 
+            </div>
+            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Fresh Roll','425');">
+          
+        </div>
+        <div class="caja-producto">
+
+            <div class="imagen" >
+                <img src="imagenes/Veggie/rollChop.jpg" alt="" >
+            </div>
+            <div class="titulo">
+                <h3>Roll Chop Suey</h3>
+            </div>
+            <div class="descripcion">
+                <h4 class="producto-descripcion">Roll relleno con vegetales salteados al wok y palta.</h4>
+            </div>
+            <div class="precio">
+                   $425 
+            </div>
+            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Roll Chop Suey','425');">
+          
+        </div>
+        <div class="caja-producto">
+
+            <div class="imagen" >
+                <img src="imagenes/Veggie/rollValencia.jpg" alt="" >
+            </div>
+            <div class="titulo">
+                <h3>Roll Valencia</h3>
+            </div>
+            <div class="descripcion">
+                <h4 class="producto-descripcion">Comes Rico y Pagas Poco Combinado con Roll California x10,Roll Napoli x10, Roll Valencia x8, Roll Paris x6, Roll Clerk x6</h4>
+            </div>
+            <div class="precio">
+                   $425 
+            </div>
+            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Roll Valencia','425');">
+          
+        </div>
+        <div class="caja-producto">
+            <div class="imagen" >
+                <img src="imagenes/Veggie/spring.jpg" alt="" >
+            </div>
+            <div class="titulo">
+                <h3>Spring Roll</h3>
+            </div>
+            <div class="descripcion">
+                <h4 class="producto-descripcion">Comes Rico y Pagas Poco Combinado con Roll California x10,Roll Napoli x10, Roll Valencia x8, Roll Paris x6, Roll Clerk x6</h4>
+            </div>
+            <div class="precio">
+                   $425 
+            </div>
+            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Spring Roll','425');">
+          
+        </div>
+        <div class="caja-producto">
+
+            <div class="imagen" >
+                <img src="imagenes/Veggie/veggie25.jpg"  alt="" >
+            </div>
+            <div class="titulo">
+                <h3>Combo Veggie 25p</h3>
+            </div>
+            <div class="descripcion">
+                <h4 class="producto-descripcion">Combinado con 5 Andino Rolls, 5 Spring Rolls, 5 Rolls Chimi Nikkei, 5 Fresh Rolls y 5 Rolls Valencia. incluye 2 palitos + 2 sojas + 2 wasabis Producto inalterable</h4>
+            </div>
+            <div class="precio">
+                   $1499 
+            </div>
+            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Combo Veggie 25p','1499');">
+          
+        </div>
+    </div>
+    </div>
+</body>
+</html>
