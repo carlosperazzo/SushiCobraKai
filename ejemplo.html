@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Layouts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+
+header{
+
+    display: block;
+    border: 1px solid;
+}
+
+nav{
+display: flex;
+vertical-align: auto;
+border: 1px solid;
+width: 20%;
+}
+
+aside{
+    display: flex;
+vertical-align: auto;
+border: 1px solid;
+width: 20%;
+
+}
+header>p{
+color: red;
+
+}
+
+
+@media all and (min-width: 600px){
+    .nav {
+        /* flex: <flex-grow> <flex-shrink> <flex-basis> */
+        flex: 3 1 auto ; /* <flex-grow> <flex-shrink> <flex-
+        basis>*/
+    }
+    .aside {
+        /* flex: <flex-grow> <flex-shrink> <flex-basis> */
+        flex: 9 1 auto; /* <flex-grow> <flex-shrink> <flex-
+        basis>*/
+    }    
+}
+
+    </style>
+</head>
+
+<body>
+    <h2>Ejemplo 2: dos columnas en container-fluid. </h2>
+    <!--br>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 bg-success">
+                <p>FONDO VERDE</p>
+            </div>
+            <div class="col-sm-9 bg-warning">
+                <p>FONDO AMARILLO</p>
+            </div>
+        </div>
+    </div>
+    <br-->
+
+    <header><p>header</p></header>
+    <nav><p>nav</p></nav>
+    <aside><p>aside</p></aside>
+    <footer>p <footer></footer></footer>
+
+
+
+</body>
+
+</html>

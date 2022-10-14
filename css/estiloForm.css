@@ -128,6 +128,7 @@ Con aling-self podemos posicionar solo un elemento hijo, generando así diferent
 
 /* tamaño pc */
 @media all and (min-width: 800px){
+    .nav{ flex: 2 1 auto;}
     .articulo{flex:2 0;}  /* <flex-grow> <flex-shrink> */
     .izquierda{order: 1;}
     .articulo{order: 2;}

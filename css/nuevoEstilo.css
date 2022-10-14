@@ -20,6 +20,19 @@
     }    
 }
 
+/* tamaño pc */
+@media all and (min-width: 800px){
+    .nav{ flex: 2 1 auto;}
+    
+    .izquierda{order: 1;}
+    .articulo{order: 2;}
+    .derecha{order: 3;}
+    .footer{order: 4;}
+    .footer{background: #a6a6f7}
+}
+
+
+
 nav>div>input:hover
 {
 transform: scale(1.2);
