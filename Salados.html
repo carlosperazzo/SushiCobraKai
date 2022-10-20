@@ -5,198 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estiloForm.css">
-    <script>
-
-       
-        function AgregarCarrito(cant, descripcion, precio)
-        {
-            let ultItem=window.parent.document.getElementById('ultItem').value ;
-            ultItem = (ultItem == null || ultItem == undefined || ultItem == "") ? 0 : ultItem;
-            
-            //Agrega al listado de pedido u producto por cada Sumar
-            var total = window.parent.document.getElementById("total").innerHTML;
-            var contador=window.parent.document.getElementById("carrito-contador").innerHTML; 
-            let subtotal=0
-            total = (total == null || total == undefined || total == "") ? 0 : total;
-            contador = (contador == null || contador == undefined || contador == "") ? 0 : contador;
-           
-            contador=parseInt(contador) + parseInt(cant)
-            window.parent.document.getElementById("carrito-contador").innerHTML=contador;
-            
-            total = (parseInt(total) + parseFloat(precio));
-            subtotal=parseFloat(precio) * parseInt(cant)
-            window.parent.document.getElementById('total').innerHTML = total;
-            window.parent.document.getElementById('totalPedido').innerHTML = total;
-            ocultarTotalVacio(total)
-            
-            var Tbl = window.parent.document.getElementById("carritoTable");
-            
-            let script=""
-            if (ultItem==10)
-                 script="<tr><td>Cant</td><td>Descripción</td><td>Precio</td><td>Total</td></tr>"
-            ultItem++
-            window.parent.document.getElementById('ultItem').value=ultItem
-
-            
-            script=script + "<tr><td><select id='Select" + ultItem + "' onclick='guardarCantAnt(this)' onchange='actualizarCantidadCarrito(this,"+  precio +")' style='width: 50px;'>";
-            let x=1
-        
-            while (x<= 10)
-            {
-                if (x==cant)
-                script=script + "<option value='" + x + "'" + " selected=''>"+ x +"</option>"
-                else
-                script=script + "<option value='" + x + "'" + ">"+ x +"</option>"
-                x++
-            }             
-            script=script + "</select></td><td class='col-descrip'>"+descripcion+"</td>"
-            script=script + "<td class='col-precio'>$"+ precio + "</td>"
-            script=script + "<td class='col-precio' id='SubTot" + ultItem + "'>$" + subtotal + "</td></tr>"
-            
-         
-            Tbl.insertRow(-1).innerHTML=script
-
-            let PedidoEnviarAnt= window.parent.document.getElementById("PedidoEnviar").value + "<br>";
-            PedidoEnviarAnt = (PedidoEnviarAnt == null || PedidoEnviarAnt == undefined ) ? "" : PedidoEnviarAnt;
-            //window.parent.document.getElementById("PedidoEnviar").innerText= PedidoEnviarAnt + script
-            //window.parent.document.getElementById("PedidoEnviar").value= PedidoEnviarAnt + cant+ "-----"+ descripcion + "----" + precio + "......." + subtotal
-            
-        }
-
-        function ocultarTotalVacio(valor)
-        {
-            var x=window.parent.document.getElementById("totalizador");
-            var contador=window.parent.document.getElementById("carrito-contador"); 
-            var btnVerPedido=window.parent.document.getElementById("btnVerPedido") ; 
-
-            valor = (valor == null || valor == undefined || valor == "") ? 0 : valor;
-            if (valor==parseInt(0))
-            {
-                x.style.display = "none";
-                contador.style.display = "none";
-                btnVerPedido.style.display = "none";
-            }
-            else
-            {
-                x.style.display = "block";
-                contador.style.display = "block";
-                btnVerPedido.style.display = "block";
-            }
-        }
-    </script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="funciones.js"></script>
 </head>
 <body>
-
-   <div  class="container-fluid">
-        <div id="productos" class="row">
-        <div class="caja-producto">
-
-            <div class="imagen" >
-                <img src="imagenes/Salados/langostinos.png" >
-            </div>
-            <div class="titulo">
-                <h3>Poke Langostinos</h3>
-            </div>
-            <div class="descripcion">
-                <h4 class="producto-descripcion">Comes Rico y Pagas Poco Combinado con Roll California x10,Roll Napoli x10, Roll Valencia x8, Roll Paris x6, Roll Clerk x6</h4>
-            </div>
-            <div class="precio">
-                   $1049 
-            </div>
-            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Poke Langostinos','1049');">
-          
-        </div>
     
-        <div class="caja-producto">
+    <div id="app" class="container-fluid">
+        <div id="productos" class="row">
+
+           
+        <div class="caja-producto" v-for="(plato, indice) in Salados" :key="indice">
 
             <div class="imagen" >
-                <img src="imagenes/Salados/PolloMex.png" alt="" >
+                <img v-bind:src="plato.imagen" >
             </div>
             <div class="titulo">
-                <h3>Poke Pollo MEX</h3>
+                <h3>{{plato.titulo}}</h3>
             </div>
             <div class="descripcion">
-                <h4 class="producto-descripcion">Fresca ensalada de pollo rebozado, salsa teriyaki, guacamole y queso phila, sobre arroz gohan (incluye salsa soja)</h4>
+                <h4 class="producto-descripcion">{{plato.descripcion}}</h4>
             </div>
-            <div class="precio">
-                   $1049 
-            </div>
-            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Poke Pollo MEX','1049');">
+            <div class="precio">{{plato.precio}}</div>
+            <input type="button" value="Quiero" class="btn btn-primary"  v-on:click="Agregar(indice)" >
           
         </div>
-        <div class="caja-producto">
+        </div>
+    </div>
 
-            <div class="imagen" >
-                <img src="imagenes/Salados/Salmango.png" alt="" >
-            </div>
-            <div class="titulo">
-                <h3>Poke Salad Salmango</h3>
-            </div>
-            <div class="descripcion">
-                <h4 class="producto-descripcion">Comes Rico y Pagas Poco Combinado con Roll California x10,Roll Napoli x10, Roll Valencia x8, Roll Paris x6, Roll Clerk x6</h4>
-            </div>
-            <div class="precio">
-                   $1449 
-            </div>
-            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Poke Salad Salmango','1449');">
-          
-        </div>
-        <div class="caja-producto">
+    <script>
+        
+        const {createApp} = Vue
+        const miApp = createApp({
+            
+            data() {
+              
+                return {
+                    Salados: [
+                        { titulo: "Poke Langostinos", imagen: "imagenes/Salados/langostinos.png", descripcion: "Comes Rico y Pagas Poco Combinado con Roll California x10,Roll Napoli x10, Roll Valencia x8, Roll Paris x6, Roll Clerk x6", precio: "$1049" },
+                        { titulo: "Poke Pollo MEX", imagen: "imagenes/Salados/PolloMex.png", descripcion: "Fresca ensalada de pollo rebozado, salsa teriyaki, guacamole y queso phila, sobre arroz gohan (incluye salsa soja)", precio:"$1049" },
+                        { titulo: "Poke Salad Salmango", imagen: "imagenes/Salados/Salmango.png", descripcion: "Comes Rico y Pagas Poco Combinado con Roll California x10,Roll Napoli x10, Roll Valencia x8, Roll Paris x6, Roll Clerk x6", precio:"$1449" },
+                        { titulo: "Poke Salmón", imagen: "imagenes/Salados/Salmon.png", descripcion: "Fresca ensalada de salmón, palta, queso phila, repollo y zanahoria sobre arroz Incluye 1 Salsa Soja", precio:"$1049" },
+                        { titulo: "Poke Salmon Fresh", imagen: "imagenes/Salados/SalmonFresh.png", descripcion: "Fresca ensalada de salmón, eneldo fresco, ralladura de limón, aceite de sésamo, palta, queso phila, sobre arroz gohan (incluye salsa soja)", precio:"$1599" },
+                        { titulo: "Poke Veggie", imagen: "imagenes/Salados/Veggie.png", descripcion: "Comes Rico y Pagas Poco Combinado con Roll California x10,Roll Napoli x10, Roll Valencia x8, Roll Paris x6, Roll Clerk x6", precio:"$1049" }
+                        ]
+                }
+            },
+            
+            methods: {
+                Agregar(indice) {
+                    
+                    AgregarCarrito('1', this.Salados[indice].titulo, this.Salados[indice].precio)
 
-            <div class="imagen" >
-                <img src="imagenes/Salados/Salmon.png" alt="" >
-            </div>
-            <div class="titulo">
-                <h3>Poke Salmón</h3>
-            </div>
-            <div class="descripcion">
-                <h4 class="producto-descripcion">Fresca ensalada de salmón, palta, queso phila, repollo y zanahoria sobre arroz Incluye 1 Salsa Soja</h4>
-            </div>
-            <div class="precio">
-                   $1449 
-            </div>
-            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Poke Salmón','1449');">
-          
-        </div>
-        <div class="caja-producto">
+                }
+        }})
 
-            <div class="imagen" >
-                <img src="imagenes/Salados/SalmonFresh.png" alt="" >
-            </div>
-            <div class="titulo">
-                <h3>Poke Salmon Fresh</h3>
-            </div>
-            <div class="descripcion">
-                <h4 class="producto-descripcion">Fresca ensalada de salmón, eneldo fresco, ralladura de limón, aceite de sésamo, palta, queso phila, sobre arroz gohan (incluye salsa soja)</h4>
-            </div>
-            <div class="precio">
-                   $1599 
-            </div>
-            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Poke Salmon Fresh','1599');">
-          
-        </div>
-        <div class="caja-producto">
-
-            <div class="imagen" >
-                <img src="imagenes/Salados/Veggie.png" alt="" >
-            </div>
-            <div class="titulo">
-                <h3>Poke Veggie</h3>
-            </div>
-            <div class="descripcion">
-                <h4 class="producto-descripcion">Comes Rico y Pagas Poco Combinado con Roll California x10,Roll Napoli x10, Roll Valencia x8, Roll Paris x6, Roll Clerk x6</h4>
-            </div>
-            <div class="precio">
-                   $1049 
-            </div>
-            <input type="button" value="Quiero" class="btn btn-primary" onclick="AgregarCarrito('1', 'Poke Veggie','1049');">
-          
-        </div>
        
-    </div>
-    </div>
+        miApp.mount('#app')
+    </script>
+
 </body>
 </html>

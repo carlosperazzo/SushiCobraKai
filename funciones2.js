@@ -66,11 +66,8 @@ function actualizarCantidadCarrito(e , precio)
           let cont=document.getElementById("carrito-contador").innerHTML;  
           let ultItem= e.id ;
           let ultSubTotal=ultItem.replace("Select","SubTot")
-          let InputSelect=ultItem.replace("Select","Input")
-          
-          let antInpuntCant=document.getElementById(InputSelect).value
-          
-          document.getElementById(InputSelect).value= (e.value);
+
+         
 
           ultItem = (ultItem == null || ultItem == undefined || ultItem == "") ? 0 : ultItem;
           total = (total == null || total == undefined || total == "") ? 0 : total;
@@ -90,63 +87,16 @@ function actualizarCantidadCarrito(e , precio)
 
            
         
-       function AgregarCarrito(cant, descripcion, precio)
+       function AgregarCarrito(cantidad, titulo, precio, subTotal)
        {
          
-           let ultItem=window.parent.document.getElementById('ultItem').value ;
-           
-           ultItem = (ultItem == null || ultItem == undefined || ultItem == "") ? 0 : ultItem;
-           
-           //Agrega al listado de pedido u producto por cada Sumar
-           var total = window.parent.document.getElementById("total").innerHTML.replace("$","");
-           var contador=window.parent.document.getElementById("carrito-contador").innerHTML; 
-           let subtotal=0
-           total = (total == null || total == undefined || total == "") ? 0 : total;
-           contador = (contador == null || contador == undefined || contador == "") ? 0 : contador;
-          
-           contador=parseInt(contador) + parseInt(cant)
-           window.parent.document.getElementById("carrito-contador").innerHTML=contador;
-           precio=precio.replace("$","");
-           total = "$" +(parseInt(total) + parseFloat(precio));
-           subtotal=parseFloat(precio) * parseInt(cant)
-           window.parent.document.getElementById('total').innerHTML = total;
-           window.parent.document.getElementById('totalPedido').innerHTML = total;
-          
-           ocultarTotalVacio(total)
-           
-           var Tbl = window.parent.document.getElementById("carritoTable");
-           
-           let script=""
-           
-           if (ultItem==10)
-                script="<tr><td>Cant</td><td>Descripción</td><td>Precio</td><td>Total</td></tr>"
-           ultItem++
-           window.parent.document.getElementById('ultItem').value=ultItem
+           window.parent.document.getElementById('cantidad2').value= cantidad;
+           window.parent.document.getElementById('titulo2').value= titulo;
+           window.parent.document.getElementById('precio2').value= precio;
+           window.parent.document.getElementById('subTotal2').value= subTotal;
+           ocultarTotalVacio('10');
 
-           
-           script=script + "<tr><td><select id='Select" + ultItem + "' onclick='guardarCantAnt(this)' onchange='actualizarCantidadCarrito(this,"+  precio +")' style='width: 50px;'>";
-           let x=1
-           let script2 ="<td><input type='text' name='#descripcion#' value='#valor#' id='Input"+ultItem+"' style='Display:none'></td>"
-           while (x<= 10)
-           {
-               if (x==cant)
-               script=script + "<option value='" + x + "'" + " selected=''>"+ x +"</option>"
-               else
-               script=script + "<option value='" + x + "'" + ">"+ x +"</option>"
-               x++
-           }             
-           script2 =script2.replace("#descripcion#",descripcion ).replace("#valor#", cant)
-
-           script=script + "</select></td><td class='col-descrip' >"+descripcion+"</td>"
-           script=script + "<td class='col-precio'>$"+ precio + "</td>"
-           script=script + "<td class='col-precio' id='SubTot" + ultItem + "'>$" + subtotal + "</td>"+script2+"</tr>"
-           //script=script + "<td><button onclick='EliminarItem(" +ultItem+")'><img src='imagenes/tachito.svg'></button></td></tr>"
-       
-           Tbl.insertRow(-1).innerHTML=script
-
-           let PedidoEnviarAnt= window.parent.document.getElementById("PedidoEnviar").value + "<br>";
-           PedidoEnviarAnt = (PedidoEnviarAnt == null || PedidoEnviarAnt == undefined ) ? "" : PedidoEnviarAnt;
-          
+           window.parent.document.querySelector('btnAgregar').click();
        }
 
        function ocultarTotalVacio(valor)

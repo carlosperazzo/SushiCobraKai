@@ -1,5 +1,11 @@
+
 *{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body
+{
+min-width: 400px;
+
 }
 h2{
 
@@ -97,28 +103,38 @@ flex:1 1 auto; Es la propiedad resumida de flex-grow, flex-shrink y flex-basis, 
 align-self: auto | flex-start | flex-end | center | baseline | stretch;
 Con aling-self podemos posicionar solo un elemento hijo, generando así diferentes posiciones para cada elemento.
 */
-.header, .articulo, .izquierda, .derecha, .footer{
+.header, .izquierda, .derecha, .footer{
     flex-grow: 1;     /* Todo crece hasta ocupar el ancho disponible */
     flex-basis: 100%; /* Tamaño por defecto: 100% */
     padding: 10px;
 }
 
-/* Algunos colores */
-.header{background: #581845; color:white}
-.articulo{background: #FFC300}
-.izquierda{background: #900C3F;color:white}
-.derecha{background: #C70039;color:white}
-.footer{background: #DAF7A6}
+
 
 /* media queries */
-/* tamaño tablet */
-@media all and (min-width: 600px){
-    .nav {
+@media all and (min-width: 300px){
+    
+    .aside1 {
         /* flex: <flex-grow> <flex-shrink> <flex-basis> */
-        flex: 3 1 auto ; /* <flex-grow> <flex-shrink> <flex-
+        flex: 3 1 auto; /* <flex-grow> <flex-shrink> <flex-
         basis>*/
     }
-    .aside {
+    .aside2 {
+        /* flex: <flex-grow> <flex-shrink> <flex-basis> */
+        flex: 9 1 auto; /* <flex-grow> <flex-shrink> <flex-
+        basis>*/
+    }     
+}
+
+
+/* tamaño tablet */
+@media all and (min-width: 600px){
+    .aside1 {
+        /* flex: <flex-grow> <flex-shrink> <flex-basis> */
+        flex: 3 1 auto; /* <flex-grow> <flex-shrink> <flex-
+        basis>*/
+    }
+    .aside2 {
         /* flex: <flex-grow> <flex-shrink> <flex-basis> */
         flex: 9 1 auto; /* <flex-grow> <flex-shrink> <flex-
         basis>*/
@@ -126,17 +142,16 @@ Con aling-self podemos posicionar solo un elemento hijo, generando así diferent
 }
 
 
+
 /* tamaño pc */
 @media all and (min-width: 800px){
-    .nav{ flex: 2 1 auto;}
-    .articulo{flex:2 0;}  /* <flex-grow> <flex-shrink> */
-    .izquierda{order: 1;}
+    .header{flex:2 0;}  /* <flex-grow> <flex-shrink> */
+    .izquierda{order: 2;}
     .articulo{order: 2;}
     .derecha{order: 3;}
     .footer{order: 4;}
     .footer{background: #a6a6f7}
 }
-
 
 
 .caja-producto{
