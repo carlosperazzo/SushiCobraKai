@@ -1,3 +1,46 @@
+function BuscarTiempo()
+{
+
+  var list=document.getElementById("cities");
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=Buenos Aires,ar&APPID=246a6d3f3ecc1db4ff57f50d8159a9ac&units=metric`;
+
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const { main, name, sys, weather } = data;
+    const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
+      weather[0]["icon"]
+    }.svg`;
+    
+    
+    const markup = `
+      <table width='250px' border='0'><tr><td><span class="city-name" >
+        ${name}
+      
+      </span></td>
+      <td><span class="city-temp">${Math.round(main.temp)}<sup>°C</sup></span></td>
+      <td><figure>
+        <img class="city-icon" src="${icon}" alt="${
+      weather[0]["description"]
+    }">
+        
+      </figure></td></tr></table>
+    `;
+    
+    
+   
+    let CajaTiempo= document.getElementById("CajaTiempo");
+    CajaTiempo.innerHTML = markup;
+    
+  })
+  .catch(() => {
+    
+  });
+
+
+
+};
+
 function vaciarPedido()
 {
   document.getElementById("myPedido").style.display="none"

@@ -1,3 +1,4 @@
+
 *{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -213,13 +214,15 @@ height: 50px;
     }
     .aside2 {
         flex: 9 1 ; 
-    }    
+    } 
+    
 }
 
 
 /* tamaño pc */
 @media all and (min-width: 800px){
     .izquierda{flex:2 0;} 
+   
     .izquierda{order: 2;}
     .derecha{order: 3;}
     .footer{order: 4;}
@@ -264,19 +267,22 @@ filter: blur(1px);
     z-index: -1;       /* Por detrás del texto del link*/
 }
 header
-{
-    background-color:white;
+{border: 1px solid ;
+    background-color: rgb(240, 240, 255);
+    display: flexbox;
+    flex-direction: row;
+    border-radius: 10px;
     height:100px;
     text-align: center;
-    margin: 5px;
+    margin-bottom: 5px;
 }
 
 .izquierda{
    /*height:500px;*/
     background-color:#BDD2EF;
     float:left;
-    width:100%;
-    display:flex;
+    min-width: 200px;
+    display:flexbox;
     flex-direction: column;
     padding: 20px;
     border-radius: 7px;
@@ -295,6 +301,30 @@ width: 98%;
     width: 100%;
     }
 
+
+    .cajaTransformacion{
+            
+        color: #FFF;
+        
+     
+        margin: 15px;
+        float: right;
+        font-size: 18px;
+        font-family: Arial;
+
+       
+      }
+     
+
+      .cajaTransformacionWhat{
+        background-color: #9B59B6;
+        -webkit-transition: 1s linear;
+        transition: 1s linear;
+      }
+      .cajaTransformacionWhat:hover{
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
 
 
 
@@ -328,3 +358,55 @@ width: 100%;
 .derecha{background: #C70039;color:white}
 .footer{background: #DAF7A6}
 */
+
+
+.ajax-section .city {
+    position: relative;
+    padding: 40px 10%;
+    border-radius: 20px;
+    background: var(--text_light);
+    color: var(--text_med);
+  }
+  .city-name
+  {
+font-size: 20px;
+
+  }
+  .ajax-section .city-name  {
+    padding: 0.2em 0.6em;
+    border-radius: 30px;
+    color: var(--text_light);
+    background: var(--orange);
+  }
+  
+  .ajax-section .city-icon {
+    margin-top: 5px;
+    width: 70px;
+    
+  }
+.city-icon
+{
+width: 50px;
+
+}
+  .ajax-section .city-temp {
+   
+    font-weight: bold;
+    margin-top: 10px;
+    color: var(--text_dark);
+  }
+
+  .city-temp {
+    font-size: 20px;
+    padding: 10px;
+  }
+  sup{
+
+    font-size:  10px; ;
+  }
+  .CajaTiempo
+  {
+float: left ;
+
+
+  }

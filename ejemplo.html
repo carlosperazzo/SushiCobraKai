@@ -5,271 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/nuevoEstilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://smtpjs.com/v3/smtp.js"> </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="funciones2.js"></script>
 </head>
 
-<body id="contenedor" onload="cargarHTML('productos.html');" >
- 
-    <input type="hidden" id="ultCantAnt" name="ultCantAnt" >
-    <input type="hidden" id="ultItem" name="ultItem" >
-    <!--input type="hidden" name="_next" value="http://127.0.0.1:5500/ejemplo.html"-->
-    <input type="hidden" name="_captcha" value="false">
+<body>
+  <div class="container">
 
-    <div class="padre">
-    <header class="header">
-        <span><a class="telefono" href="https://api.whatsapp.com/send/?phone=5491134195582&text=Hola+SushiCobraKai&type=phone_number&app_absent=0"><img src="imagenes/whattsap.png" alt="Acceso al teléfono de reclamos"> </a>
-        </span>
-        <span>
-        <img class="center" src="imagenes/logo_pop.png" alt="Logo SushiPop" width="200px">
-        </span>
-    </header>
-    
-     
-    <aside class="aside1 izquierda" >
-        <div><input type="button" class="btn btn-primary" value="Veggie"  onclick="cargarHTML('vegetariano.html');" > </div>
-        <div><input type="button" class="btn btn-primary" value="Promociones" onclick="cargarHTML('promos.html')"> </div>
-        <div><input type="button" class="btn btn-primary" value="Salados" onclick="cargarHTML('Salados.html')"></div>
-        <div><div class="carrito-contador" id="carrito-contador">0</div></div>
-        <div><input type="button" id="btnVerPedido" class="btn btn-primary" value="Ver Pedido" data-bs-toggle="modal" data-bs-target="#myPedido" ></div>
-      <br><br><br>
-                <div><input type="button" class="btn btn-primary" value="Ingresar" 
-            data-bs-toggle="modal" data-bs-target="#myModal" class="nav-menu-link nav-link"></div>
-    </aside>
   
+ <div class="row">
+      <div class="col-sm-12 col-lg-4 col-md-4 bg-primary"> header1 </div>
+      <div class="col-sm-12 col-lg-4 col-md-4 bg-secondary"> header2 </div>
+      <div class="col-sm-12 col-lg-4 col-md-4 bg-success"> header3 </div>
+ </div>
   
-    <aside class="aside2 derecha">
-           <iframe id="productos" frameborder="0" scrolling="yes" style="height: 480px; overflow-y:hidden; width: 100%" " height="window.height-100px"></iframe>
-            
-    </aside>
+ <div class="row">
+  <div class="col-sm-12 col-lg-4 col-md-3 col-xl-2 bg-primary"> nav1 </div>
+  <div class="col-sm-12 col-lg-8 col-md-9 col-xl-10 bg-secondary"> na2 </div>
   
-  
-    
-    <footer class="footer" >
-      
-     
-             <input type="button" value="Ver mi Pedido" data-bs-toggle="modal" data-bs-target="#myPedido" 
-             class="btn-Pedido" id="btnVerPedidoBarra">
-             
-                <p id="total" value="$" ></p>
-                 
-               
-    </footer>
-		
-    </div>
+</div>
 
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                 
-                <!-- Modal Header -->
-                <div class="contenedor" >
-                <div class="modal-header">
-                  <h4 class="modal-title">Log In</h4>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-          
-                <!-- Modal body -->
-             
-                  <br>
-                  <p style="padding: 10px">Ingresá con tu cuenta para disfrutar el mejor sushi</p>
-                  <form action="/ejemplo2.html"  id="formulario-Login"  autocomplete="on" onsubmit="openModal()" id="myForm">
-                  <div class="registration-form">
-                      <div class="form-group">
-                         <input  class="form-control item" type="email" name="email" id="email" placeholder="Email"  required>
-                         
-                          
-                      </div>
-                      <div class="form-group">
-                          <input class="form-control item" type="password" name="password" minlength="6" id="password" placeholder="Password" required>
-                          
-                      </div>
-                  </div>
-              
-                  <div>
-                      
-                      
-                  </div>
-                  <div class="form-group">
-                  <button class="btn btn-primary" style="width: 150px;" type="submit" >Ingresar </button>
-                </div>
-                </form>
-                <div><button class="btn btn-primary" style="width: 150px;" type="button"    data-bs-toggle="modal" data-bs-target="#myRegistro">Nuevo Usuario</button>
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          
-          
-          <form action="https://formsubmit.co/sushicobrakai22@gmail.com" method="POST"> 
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="_honey" style="display:none">
-            <!--input type="hidden" name="_next" value="http://127.0.0.1:5500/ejemplo.html"-->
-            <input type="hidden" name="_subject" value="Nuevo registro">
-            <input type="hidden" name="_template" value="table">
-            
-            
-          <div class="modal fade" id="myRegistro">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="contenedor" > 
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h4 class="modal-title">Registrarse</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  <form id="formulario-Login"  autocomplete="on" onsubmit="openModal()" >
-                  <div class="registration-form">
-                      
-                      <div class="form-group">
-                          <input class="form-control item" type="text" name="Nombre y Apellido" maxlength="40" minlength="4"  id="Nombre y Apellido" placeholder="Nombre y Apellido" required>
-                      </div>
-                      <div class="form-group">
-                        <input class="form-control item" type="text" name="Teléfono" maxlength="15" minlength="4" pattern="^[0-9_.-]*$" id="userTel" placeholder="Teléfono" required>
-                    </div>
-                      <div class="form-group">
-                          <input class="form-control item" type="email" name="email" id="email" placeholder="Email" required>
-                      </div>
-          
-                      <div class="form-group">
-                          <input class="form-control item" type="email" name="Repita su email" id="email" placeholder="Repetir Email" required>
-                      </div>
-                      <div class="form-group">
-                          <input class="form-control item" type="password" name="password" minlength="6" id="password" placeholder="Password" required>
-                      </div>
-                      
-                      <div><button class="btn btn-primary" style="width: 150px;" type="submit"  >
-                      Ingresar</button>
-                      </div>
-                  </div>
-                  </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          
-          </form>
-         
-
-          <div id="app">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="_honey" style="display:none">
-            <!--input type="hidden" name="_next" value="http://127.0.0.1:5500/ejemplo.html"-->
-            <input type="hidden" name="_subject" value="Nuevo Pedido">
-            <input type="hidden" name="_template" value="table">
-        
-            <input type="text" v-model="cantidad" id="cantidad2" >
-            <input type="text" v-model="titulo" id="titulo2" >
-            <input type="text" v-model="precio" id="precio2">
-            <input type="text" v-model="subTotal" id="subTotal2">
-            <button id="btnAgregar" v-on:click="Agregar" >picar</button>
-
-          <form action="https://formsubmit.co/sushicobrakai22@gmail.com" method="POST"> 
-            
-            <div class="modal fade" id="myPedido">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="contenedor" id="PedidoaEnviar" > 
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h4 class="modal-title"> Mi Pedido</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  
-                  <div>
-                      <div class="shop_carrito" >
-                          
-                        <table class="carritoTable" border="0px" id="carritoTable">
-                          <tr>
-                            <th>Cant</th>
-                            <th style="text-align:left">Descripción</th>
-                            <th style="text-align:right ;" >Precio</th>
-                            <th style="text-align:right ;">Total</th>
-                          </tr>
-                       <tr v-for="plato in platos">
-                        <td v-text="plato.cantidad"></td>
-                        <td v-text="plato.titulo"></td>
-                        <td v-text="plato.precio"></td>
-                        <td v-text="plato.subTotal"></td>
-                       </tr>
-                        </table>
-                        <table class="carritoTable" border="0px" id="carritoTableCabecera">
-                          <tr>
-                            <td>
-                            
-                            <br></td>
-                          </tr><tr><td><br></td></tr>  
-                          <tr class="total"><td>Total:</td><td></td>
-                          <td class="col-total" id="totalPedido">0</td></tr>
-                        </table>
-                  <div>
-                   <br>
-                   <br> 
-                    <button class="btn btn-primary" style="width: 300px; "  onclick="vaciarPedido();" >Vaciar pedido</button>    
-                    <br><br>
-                    
-                  <button class="btn btn-primary" style="width: 300px;" data-bs-dismiss="modal" onclick="window.SubmitEvent()"  id="btnEnviarPedido">Enviar pedido</button>
-                 
-                  
-
-                  </div>
-                  
-                  </div>
-                  </div>
-          
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form> 
-          </div>
-                   
-          
-            <script>
-                $(document).ready(function(){
-                $('#myForm').on('submit', function(e){
-                $('#awaitModal').modal('show');
-                e.preventDefault();
-              })});
-
-              
-
-              </script>
-
-
-<script>
-        
-  const {createApp} = Vue
-  const miApp = createApp({
-      
-      data() {
-        platos: []; cantidad: 0; titulo: ""; precio: "$0"; subTotal:"$0"
-      },
-      methods: {
-          Agregar() 
-          {
-           
-            alert(this.titulo);
-             this.platos.push({cantidad:this.cantidad},  {titulo:this.titulo},{precio:this.precio} ,{subTotal:this.subTotal})
-
-          }
-  }
-}
-)
-
- 
-  miApp.mount('#app')
-</script>
-
-
+</div>
 </body>
+
 </html>
 
