@@ -88,17 +88,8 @@ text-align: left;
     padding: 10px;
 }
 
-/* Propiedades Flexbox pero de los elementos hijos:
-Estás propiedades las aplicaremos a los div que se encuentran dentro del contenedor padre.
-order:; Ordena los elementos hijos según el número que tu le designes.
-flex-grow:; Especifica el factor de crecimiento de un elemento flexible. Se especifica qué cantidad de espacio debe ocupar el elemento dentro del contenedor flexible. Si todos los elementos tienen flex-grow 1, el espacio restante se distribuye entre los elementos.
-flex-shrink:; Si utilizamos esta propiedad con valor «0» el elemento hijo no podrá hacerse más pequeño que su ancho establecido.
-flex-basis:; Con esta propiedad podemos especificar el tamaño inicial que tendrá un elemento hijo.
-flex:1 1 auto; Es la propiedad resumida de flex-grow, flex-shrink y flex-basis, generalmente se utiliza con la unidad «1 1 auto».
-align-self: auto | flex-start | flex-end | center | baseline | stretch;
-Con aling-self podemos posicionar solo un elemento hijo, generando así diferentes posiciones para cada elemento.
-.articulo,*/
-.header,  .izquierda, .derecha, .footer{
+
+  .header, .izquierda, .derecha, .footer{
     flex-grow: 1;     /* Todo crece hasta ocupar el ancho disponible */
     flex-basis: 100%; /* Tamaño por defecto: 100% */
     padding: 10px;
@@ -204,10 +195,6 @@ height: 50px;
 
 
 
-
-
-
-
 @media all and (min-width: 600px){
     .aside1 {
         flex: 3 1 ; 
@@ -215,14 +202,15 @@ height: 50px;
     .aside2 {
         flex: 9 1 ; 
     } 
+  
     
 }
 
 
-/* tamaño pc */
+
 @media all and (min-width: 800px){
-    .izquierda{flex:2 0;} 
    
+    .izquierda{flex:2 0;} 
     .izquierda{order: 2;}
     .derecha{order: 3;}
     .footer{order: 4;}
@@ -266,16 +254,34 @@ filter: blur(1px);
     transform: scaleX(1.1);  /* Zoom */
     z-index: -1;       /* Por detrás del texto del link*/
 }
-header
-{border: 1px solid ;
-    background-color: rgb(240, 240, 255);
-    display: flexbox;
-    flex-direction: row;
+
+.header{
     border-radius: 10px;
-    height:100px;
+    height:auto;
     text-align: center;
     margin-bottom: 5px;
+    border: 1px solid ;
+    background-color: rgb(240, 240, 255);
+    justify-items:center;
+    display: grid;
+    grid-template-columns: 33% 33% 33% ; 
 }
+   
+@media all and (max-width: 600px){
+    .header {
+    display: grid;
+    grid-template-columns: 100%  ;
+}
+}
+            
+@media all and (min-width: 600px){
+    .header {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+    
+}
+
 
 .izquierda{
    /*height:500px;*/
@@ -352,12 +358,7 @@ width: 100%;
 {
     font-size: small;
 }
-/* Algunos colores 
-.header{background: #581845; color:white}
-.izquierda{background: #900C3F;color:white}
-.derecha{background: #C70039;color:white}
-.footer{background: #DAF7A6}
-*/
+
 
 
 .ajax-section .city {
